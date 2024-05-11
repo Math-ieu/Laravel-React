@@ -11,7 +11,7 @@ class CreateTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,9 @@ class CreateTaskRequest extends FormRequest
     {
         return [
             //
+            'project_id' => 'required|integer|exists:projects,id',
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
         ];
     }
 }
